@@ -5,4 +5,4 @@ This is a simple console 'application' that takes user input with simple type va
 
 
 ## Structure
-The application is very simple, encompassing a single namespace which itself contains a single class. Flow is broken into a few simple functions to keep things DRY. There is no external database or any other file access nor validation of any sorth.
+The application is very simple, encompassing a single namespace which itself contains a single class. Flow is broken into a few simple functions to keep things DRY. There is no external database or any other file access nor validation of any sort.  
