@@ -9,11 +9,11 @@ namespace CsNumberGuesser
         static void Main(string[] args)
         {
             // START HERE //
-            Console.WriteLine("What is your name:");
 
-            string inputName = Console.ReadLine();
+            ShowAppInfo();  // Display app intro
 
-            Console.WriteLine($"Hello {inputName}, let's play a game...");
+            GreetUser();
+
 
             while (true)
             {
@@ -39,9 +39,7 @@ namespace CsNumberGuesser
                     if (!int.TryParse(input, out guess))
                     {
                         // Tell the user they need to enter a number
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Please enter a whole number");
-                        Console.ResetColor();
+                        PrintColorMessage(ConsoleColor.Red, "Please enter a number");
                         continue;
                     }
 
@@ -51,18 +49,14 @@ namespace CsNumberGuesser
                     // Check the guess
                     if (guess != correctNumber)
                     {
-                        // Alert user they guessed wrong
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("That's not the right number. Try again.");
-                        Console.ResetColor();
+                        // Print wrong guess message
+                        PrintColorMessage(ConsoleColor.Red, "Sorry, try again!");
 
                     }
                 }
 
                 // Output success message
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Correct!");
-                Console.ResetColor();
+                PrintColorMessage(ConsoleColor.Yellow, "CORRECT!!");
 
                 // Ask to play agin
                 Console.WriteLine("Play Again? [Y/N]");
@@ -70,13 +64,36 @@ namespace CsNumberGuesser
                 // Get answer regardles of case 
                 string answer = Console.ReadLine().ToUpper();
 
-                // User must choose 'N' or game will continue
+                // User must explicitly exit or the next round starts
                 if (answer == "N" || answer == "NO")
                 {
                     return;
                 }
                 continue;
             }
+        }
+
+        // Displays app info
+        static void ShowAppInfo() {
+            // Some application variables
+            string appName = "Simple Number Guesser";
+            string appVersion = "1.0.0";
+
+            PrintColorMessage(ConsoleColor.Green, $"{appName}: Version {appVersion}");
+        }
+
+        // Get the user name and greet them
+        static void GreetUser() {
+            Console.WriteLine("What is your name:");
+            string inputName = Console.ReadLine();
+            Console.WriteLine($"Hello {inputName}, let's play a game...");
+        }
+
+        // Print color message
+        static void PrintColorMessage(ConsoleColor color, string message) {
+            Console.ForegroundColor = color;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
     }
 }
